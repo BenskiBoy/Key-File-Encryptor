@@ -36,6 +36,7 @@ int main( int argc, char **argv )
 
 	opterr = 0;
 
+	/* Passer for CLI interface*/
 	while ((c = getopt (argc, argv, "dek:o:i:")) != -1){
 		switch (c)
 		{
@@ -87,20 +88,23 @@ int main( int argc, char **argv )
 	size_t keyFileSize = 0;
 	size_t inputFileSize = 0;
 
+	/*Open input file */
 	cout << "Opening file input file: " << inputFileName  << endl;
 	inputFile.open( inputFileName.c_str(), ios::in|ios::binary);
 	if(!inputFile.is_open()){
 		cerr << "Error opening: " << inputFileName << endl;
 		return 1;
 	}
-	
+
+	/*Open key file */
 	cout << "Opening key file name: " << keyFileName << endl;
 	keyFile.open(keyFileName.c_str(), ios::in|ios::binary);
 	if(!keyFile.is_open()){
 		cerr << "Error opening: " << keyFileName << endl;
 		return 1;
 	}
-	
+
+	/*Open output file*/
 	cout << "Opening output file name: " << outputFileName << endl;
 	outFile.open( outputFileName.c_str(), ios::out|ios::binary);
 	if(!outFile.is_open()){
@@ -204,6 +208,10 @@ int main( int argc, char **argv )
 	return 0;
 }
 
+/**
+Ensures that values 0x00 to 0xFF are located in the first 65533 locations in the keyfile.
+Returns 1 if key file is not suitable.
+ */
 int keyChecker(unsigned char* keyFileData)
 {
 	int val = 0;
