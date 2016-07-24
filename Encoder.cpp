@@ -3,9 +3,7 @@
 #include <cstring> // for std::strlen
 #include <cstddef> // for std::size_t -> is a typedef on an unsinged int
 #include <iomanip>
-#include <sstream>
 #include <string>
-#include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h> //for uint16_t
 #include <unistd.h> //for getopt()
